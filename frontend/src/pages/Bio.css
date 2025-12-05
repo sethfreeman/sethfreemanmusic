@@ -1,0 +1,50 @@
+.bio {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bio h1 {
+  margin-bottom: 2rem;
+}
+
+.bio-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.bio-content p {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.bio-content a {
+  color: #4a9eff;
+  text-decoration: none;
+}
+
+.bio-content a:hover {
+  text-decoration: underline;
+  color: #6bb3ff;
+}
+
+.epk-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.epk-section h2 {
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .bio-content {
+    font-size: 1rem;
+  }
+  
+  .bio-content p {
+    text-align: left;
+  }
+}

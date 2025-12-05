@@ -1,0 +1,57 @@
+.photos {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.photos h1 {
+  margin-bottom: 2rem;
+  text-align: left;
+  color: #fff;
+}
+
+.instagram-embed {
+  margin: 3rem 0;
+  padding: 3rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.instagram-embed p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.instagram-link {
+  display: inline-block;
+  padding: 15px 40px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+
+.instagram-link:hover {
+  transform: scale(1.05);
+}
+
+.more-link {
+  margin-top: 3rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+}
+
+.more-link a {
+  color: #4a9eff;
+  text-decoration: none;
+}
+
+.more-link a:hover {
+  text-decoration: underline;
+  color: #6bb3ff;
+}

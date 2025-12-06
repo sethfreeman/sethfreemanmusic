@@ -24,6 +24,7 @@ export default function RootLayout({ children }) {
               <li><Link href="/video">Video</Link></li>
               <li><Link href="/bio">Bio</Link></li>
               <li><Link href="/shows">Tour</Link></li>
+              <li><Link href="/members" className="members-link">Members</Link></li>
             </ul>
           </nav>
           

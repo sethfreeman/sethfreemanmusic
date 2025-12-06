@@ -101,6 +101,19 @@ body::before {
   color: #4a9eff;
 }
 
+.navbar a.members-link {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.navbar a.members-link:hover {
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+  transform: translateY(-2px);
+}
+
 @media (max-width: 968px) {
   .navbar {
     flex-direction: column;

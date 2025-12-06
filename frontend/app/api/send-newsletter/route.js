@@ -1,7 +1,8 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Force dynamic route (don't run at build time)
+export const dynamic = 'force-dynamic'
 
 export async function POST(request) {
   try {
@@ -12,6 +13,9 @@ export async function POST(request) {
         { status: 500 }
       )
     }
+
+    // Initialize Resend at runtime (not build time)
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     const { subject, introBlurb, recipients, events, releases } = await request.json()
 

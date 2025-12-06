@@ -1,0 +1,67 @@
+.music {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.music h1 {
+  margin-bottom: 2rem;
+}
+
+.music-content {
+  line-height: 1.8;
+  color: #fff;
+}
+
+.music-content p {
+  margin: 1.5rem 0;
+}
+
+.music-platforms,
+.social-platforms {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0 2rem 2rem;
+}
+
+.music-platforms a,
+.social-platforms a {
+  color: #4a9eff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.music-platforms a:hover,
+.social-platforms a:hover {
+  text-decoration: underline;
+  color: #6bb3ff;
+}
+
+.projects-intro {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.projects-intro a {
+  color: #4a9eff;
+  text-decoration: none;
+}
+
+.projects-intro a:hover {
+  text-decoration: underline;
+  color: #6bb3ff;
+}
+
+.social-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .music-platforms,
+  .social-platforms {
+    margin-left: 1rem;
+  }
+}

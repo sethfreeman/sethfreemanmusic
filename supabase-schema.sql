@@ -102,13 +102,13 @@ CREATE TABLE newsletters (
 ALTER TABLE newsletters ENABLE ROW LEVEL SECURITY;
 
 -- Admin role check function
+-- SETUP: After your first login, get your user ID from Supabase Dashboard → Authentication → Users
+-- Then replace 'your-user-id-here' below with your actual UUID
 CREATE OR REPLACE FUNCTION is_admin()
 RETURNS BOOLEAN AS $$
 BEGIN
-  RETURN (
-    SELECT email FROM auth.users 
-    WHERE id = auth.uid()
-  ) = 'sethfreemanmusic@gmail.com'; -- Replace with your admin email
+  -- Check if current user is admin by user ID
+  RETURN auth.uid() = 'your-user-id-here'::uuid; -- Replace with your user ID after first login
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 

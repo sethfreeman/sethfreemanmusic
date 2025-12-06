@@ -20,8 +20,26 @@
 2. Click "New Query"
 3. Copy the entire contents of `supabase-schema.sql`
 4. Paste into the SQL editor
-5. **IMPORTANT**: Replace `sethfreemanmusic@gmail.com` with your actual admin email
+5. For now, leave `'your-user-id-here'` as is - we'll update it after your first login
 6. Click "Run" to execute the schema
+
+### Step 2b: Update Admin User ID (After First Login)
+
+1. Sign in to your site using GitHub OAuth
+2. Go to Supabase Dashboard → **Authentication** → **Users**
+3. You should see your user listed - click on it
+4. Copy your **User UID** (it's a UUID like `a1b2c3d4-...`)
+5. Go back to **SQL Editor** in Supabase
+6. Run this query (replace with your actual UUID):
+   ```sql
+   CREATE OR REPLACE FUNCTION is_admin()
+   RETURNS BOOLEAN AS $$
+   BEGIN
+     RETURN auth.uid() = 'a1b2c3d4-your-actual-uuid-here'::uuid;
+   END;
+   $$ LANGUAGE plpgsql SECURITY DEFINER;
+   ```
+7. Now you have admin access!
 
 ### Step 3: Configure OAuth Providers
 

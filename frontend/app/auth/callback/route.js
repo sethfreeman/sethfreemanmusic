@@ -5,13 +5,30 @@ import { NextResponse } from 'next/server'
 export async function GET(request) {
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
+  const error = requestUrl.searchParams.get('error')
+  const errorDescription = requestUrl.searchParams.get('error_description')
+
+  if (error) {
+    console.error('OAuth error:', error, errorDescription)
+    // Redirect to login with error
+    return NextResponse.redirect(
+      `${requestUrl.origin}/login?error=${encodeURIComponent(errorDescription || error)}`
+    )
+  }
 
   if (code) {
     const cookieStore = cookies()
     const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
-    await supabase.auth.exchangeCodeForSession(code)
+    const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
+    
+    if (exchangeError) {
+      console.error('Session exchange error:', exchangeError)
+      return NextResponse.redirect(
+        `${requestUrl.origin}/login?error=${encodeURIComponent(exchangeError.message)}`
+      )
+    }
   }
 
-  // URL to redirect to after sign in process completes
-  return NextResponse.redirect(requestUrl.origin + '/login')
+  // Redirect to members page after successful sign in
+  return NextResponse.redirect(requestUrl.origin + '/members')
 }

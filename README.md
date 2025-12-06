@@ -1,70 +1,77 @@
 # Seth Freeman Music
 
-Official website for Seth Freeman - Singer/Songwriter. Built with Go backend and React frontend.
+Official website for Seth Freeman - Singer/Songwriter. Built with Next.js.
 
 ## Tech Stack
 
-- **Backend**: Go (Golang) - serves the static React build
-- **Frontend**: React with React Router
-- **Deployment**: Can be deployed to any platform supporting Go
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: CSS Modules with dark theme
+- **Deployment**: Vercel (optimized for Next.js)
 
 ## Project Structure
 
 ```
-/backend    - Go server (serves React build in production)
-/frontend   - React application
+/frontend
+  /app          - Next.js pages and layouts
+  /public       - Static assets (images)
+  next.config.js - Next.js configuration
+/backend        - Go server (optional, not currently used)
 ```
 
 ## Development
 
 ### Prerequisites
 
-- Node.js and npm
-- Go 1.21 or higher
+- Node.js 18+ and npm
 
-### Frontend Development
+### Local Development
 
 ```bash
 cd frontend
 npm install
-npm start
+npm run dev
 ```
 
-The React app will run on `http://localhost:3000`
+Visit `http://localhost:3000`
 
 ### Production Build
 
-1. Build the React app:
 ```bash
 cd frontend
 npm run build
 ```
 
-2. Run the Go server (serves the built React app):
-```bash
-cd backend
-go mod tidy
-go run main.go
-```
-
-The server will run on `http://localhost:8080`
+This creates a static export in the `out/` directory.
 
 ## Deployment
 
-1. Build the frontend: `cd frontend && npm run build`
-2. Deploy the backend with the frontend build directory
-3. Set the `PORT` environment variable if needed
+The site is deployed on Vercel with automatic deployments from the main branch.
 
-## Content
+### Vercel Configuration
 
-The site includes:
-- Home page with bio and music links
-- Music page with streaming platform links
-- Photos page (Instagram integration)
-- Video page with YouTube embeds
-- Bio/EPK page
-- Tour dates (Songkick widget)
+- **Root Directory**: `frontend` (set in Vercel project settings)
+- **Framework**: Next.js (auto-detected)
+- **Build Command**: `npm run build`
+- **Output Directory**: `out`
 
-## Migration from WordPress
+## Site Content
 
-This site was migrated from WordPress. The original export is in `sethfreeman.WordPress.2025-12-05.xml`.
+- **Home** - Full-screen hero image with bio and music links
+- **Music** - Streaming platform links and social media
+- **Photos** - Instagram integration
+- **Video** - YouTube video embeds
+- **Bio** - Full biography and press kit
+- **Tour** - Tour dates via Songkick widget
+
+## Features
+
+- 🎨 Dark theme with custom background images
+- 📱 Fully responsive design
+- ⚡ Static site generation for optimal performance
+- 🎵 Integration with music streaming platforms
+- 📸 Social media integration
+- 🎬 Embedded video content
+
+## History
+
+Originally built with WordPress, migrated to Next.js for better performance and maintainability.

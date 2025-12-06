@@ -62,34 +62,41 @@
   justify-content: center;
   gap: 12px;
   padding: 14px 24px;
-  border: none;
-  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .github-btn {
-  background: #24292e;
+  background: rgba(36, 41, 46, 0.8);
   color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .github-btn:hover {
-  background: #1a1e22;
+  background: rgba(74, 158, 255, 0.3);
+  border-color: #4a9eff;
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(74, 158, 255, 0.4);
 }
 
 .google-btn {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   color: #333;
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .google-btn:hover {
-  background: #f5f5f5;
+  background: rgba(74, 158, 255, 0.3);
+  border-color: #4a9eff;
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(74, 158, 255, 0.4);
 }
 
 .login-footer {

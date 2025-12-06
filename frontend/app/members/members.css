@@ -32,16 +32,21 @@
 .filter-tabs button {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   padding: 10px 20px;
   border-radius: 25px;
   cursor: pointer;
   font-size: 16px;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .filter-tabs button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(74, 158, 255, 0.3);
+  border-color: #4a9eff;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(74, 158, 255, 0.4);
 }
 
 .filter-tabs button.active {
@@ -121,19 +126,24 @@
 
 .view-btn {
   width: 100%;
-  background: #1976d2;
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   padding: 12px;
-  border-radius: 5px;
+  border-radius: 25px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: bold;
-  transition: background 0.3s;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .view-btn:hover {
-  background: #1565c0;
+  background: rgba(74, 158, 255, 0.3);
+  border-color: #4a9eff;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(74, 158, 255, 0.4);
 }
 
 .empty-state {

@@ -1,0 +1,133 @@
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.admin-dashboard h1 {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-card h3 {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-number {
+  color: #4a9eff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.admin-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.admin-section h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.admin-section p {
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.import-area {
+  margin: 1.5rem 0;
+}
+
+.import-area input[type="file"] {
+  display: none;
+}
+
+.upload-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #4a9eff 0%, #2080ff 100%);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(74, 158, 255, 0.4);
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.message.success {
+  background: rgba(76, 175, 80, 0.2);
+  border: 2px solid rgba(76, 175, 80, 0.5);
+  color: #81c784;
+}
+
+.message.error {
+  background: rgba(244, 67, 54, 0.2);
+  border: 2px solid rgba(244, 67, 54, 0.5);
+  color: #e57373;
+}
+
+.message.info {
+  background: rgba(74, 158, 255, 0.2);
+  border: 2px solid rgba(74, 158, 255, 0.5);
+  color: #4a9eff;
+}
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.admin-link {
+  display: block;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.admin-link:hover {
+  background: rgba(74, 158, 255, 0.2);
+  border-color: #4a9eff;
+  transform: translateY(-2px);
+}

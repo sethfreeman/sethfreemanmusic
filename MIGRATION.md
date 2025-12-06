@@ -63,7 +63,19 @@ This creates a static export in the `out/` directory.
 
 ## Deployment
 
-Vercel will automatically detect Next.js and deploy correctly. No special configuration needed!
+### Important: Update Vercel Settings
+
+Before deploying, you MUST update your Vercel project settings:
+
+1. Go to Vercel Dashboard → Your Project → Settings → General
+2. Find "Root Directory" 
+3. **REMOVE** the "frontend" setting (leave it blank/default)
+4. Save changes
+5. Redeploy
+
+OR keep "frontend" as Root Directory and Vercel will auto-detect Next.js from there.
+
+The `frontend/vercel.json` file explicitly sets the framework to Next.js to prevent Remix detection.
 
 ## Notes
 

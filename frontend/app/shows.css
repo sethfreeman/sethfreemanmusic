@@ -1,0 +1,20 @@
+.shows {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.shows h1 {
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.songkick-container {
+  margin-top: 2rem;
+  min-height: 400px;
+}
+
+.songkick-widget {
+  display: block;
+  width: 100%;
+  color: #fff;
+}

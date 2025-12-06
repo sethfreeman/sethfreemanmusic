@@ -80,7 +80,10 @@ export default function NewsletterPage() {
     try {
       // Get recipients based on type
       let recipients = contacts
-      if (recipientType === 'members') {
+      if (recipientType === 'test') {
+        // Send only to admin (current user)
+        recipients = [{ email: user.email, name: user.user_metadata?.name || 'Admin' }]
+      } else if (recipientType === 'members') {
         const { data: profiles } = await supabase
           .from('profiles')
           .select('email, name')
@@ -101,12 +104,17 @@ export default function NewsletterPage() {
           subject,
           introBlurb,
           recipients,
-          events,
-          releases
+          events: events || [],
+          releases: releases || []
         })
       })
 
-      const result = await response.json()
+      let result
+      try {
+        result = await response.json()
+      } catch (parseError) {
+        throw new Error('Server returned invalid response. Check that RESEND_API_KEY is configured.')
+      }
 
       if (!response.ok) {
         throw new Error(result.error || 'Failed to send newsletter')
@@ -165,6 +173,7 @@ export default function NewsletterPage() {
         <div className="form-group">
           <label>Send To</label>
           <select name="recipient_type" required>
+            <option value="test">Test (Admin Only)</option>
             <option value="all">All Contacts ({contacts.length})</option>
             <option value="members">Members Only</option>
           </select>

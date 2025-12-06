@@ -5,6 +5,14 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request) {
   try {
+    // Check if API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: 'RESEND_API_KEY not configured. See PHASE-4-RESEND-SETUP.md' },
+        { status: 500 }
+      )
+    }
+
     const { subject, introBlurb, recipients, events, releases } = await request.json()
 
     if (!recipients || recipients.length === 0) {
@@ -14,8 +22,8 @@ export async function POST(request) {
       )
     }
 
-    // Build HTML email
-    const html = buildNewsletterHTML(introBlurb, events, releases)
+    // Build HTML email (events and releases can be empty arrays)
+    const html = buildNewsletterHTML(introBlurb, events || [], releases || [])
 
     // Send emails (Resend supports batch sending)
     const emailAddresses = recipients.map(r => r.email)
@@ -31,7 +39,7 @@ export async function POST(request) {
     if (error) {
       console.error('Resend error:', error)
       return NextResponse.json(
-        { error: error.message },
+        { error: error.message || 'Failed to send email' },
         { status: 500 }
       )
     }
@@ -45,7 +53,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('Newsletter send error:', error)
     return NextResponse.json(
-      { error: error.message },
+      { error: error.message || 'Unknown error occurred' },
       { status: 500 }
     )
   }

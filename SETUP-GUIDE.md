@@ -16,12 +16,24 @@
 
 ### Step 2: Run Database Schema
 
+**Option A: Run Complete Schema (Quickest)**
+
 1. In your Supabase dashboard, go to **SQL Editor**
 2. Click "New Query"
-3. Copy the entire contents of `supabase-schema.sql`
+3. Copy the entire contents of `database/schema.sql`
 4. Paste into the SQL editor
 5. For now, leave `'your-user-id-here'` as is - we'll update it after your first login
 6. Click "Run" to execute the schema
+
+**Option B: Run Migrations (Recommended for tracking changes)**
+
+1. In your Supabase dashboard, go to **SQL Editor**
+2. Run each migration file in order:
+   - First: `database/migrations/001_initial_schema.sql`
+   - Then: `database/migrations/002_add_reverbnation_fields.sql`
+3. See `database/migrations/README.md` for more details
+
+Both options create the same database structure. Use migrations if you want to track changes over time.
 
 ### Step 2b: Update Admin User ID (After First Login)
 

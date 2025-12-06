@@ -21,12 +21,19 @@ export default function AdminDashboard() {
       const lines = text.split('\n')
       const headers = lines[0].split(',').map(h => h.trim().toLowerCase())
       
+      // Find column indexes
       const emailIndex = headers.findIndex(h => h.includes('email'))
-      const nameIndex = headers.findIndex(h => h.includes('name') || h.includes('first'))
-      
       if (emailIndex === -1) {
         throw new Error('No email column found in CSV')
       }
+      
+      const nameIndex = headers.findIndex(h => h.includes('account name') || h.includes('name') || h.includes('first'))
+      const cityIndex = headers.findIndex(h => h === 'city')
+      const stateIndex = headers.findIndex(h => h === 'state')
+      const countryIndex = headers.findIndex(h => h === 'country')
+      const postalCodeIndex = headers.findIndex(h => h.includes('postal'))
+      const tagIndex = headers.findIndex(h => h === 'tag')
+      const createdAtIndex = headers.findIndex(h => h.includes('fc created'))
 
       const contacts = []
       for (let i = 1; i < lines.length; i++) {
@@ -35,33 +42,49 @@ export default function AdminDashboard() {
         
         const values = line.split(',').map(v => v.trim().replace(/^"|"$/g, ''))
         const email = values[emailIndex]
-        const name = nameIndex !== -1 ? values[nameIndex] : email.split('@')[0]
         
         if (email && email.includes('@')) {
-          contacts.push({ email, name })
+          const contact = {
+            email,
+            name: nameIndex !== -1 ? values[nameIndex] : email.split('@')[0],
+            city: cityIndex !== -1 ? values[cityIndex] : null,
+            state: stateIndex !== -1 ? values[stateIndex] : null,
+            country: countryIndex !== -1 ? values[countryIndex] : null,
+            postal_code: postalCodeIndex !== -1 ? values[postalCodeIndex] : null,
+            tag: tagIndex !== -1 ? values[tagIndex] : null,
+            reverbnation_created_at: createdAtIndex !== -1 ? values[createdAtIndex] : null
+          }
+          contacts.push(contact)
         }
       }
 
       setMessage(`Found ${contacts.length} contacts. Importing...`)
 
-      // Import contacts (they'll need to sign up to activate)
+      // Import contacts into contacts table (they'll sign up later via OAuth)
       let imported = 0
+      let errors = []
       for (const contact of contacts) {
         const { error } = await supabase
-          .from('profiles')
-          .upsert({ 
-            email: contact.email, 
-            name: contact.name,
-            email_verified: false 
-          }, { 
+          .from('contacts')
+          .upsert(contact, { 
             onConflict: 'email',
-            ignoreDuplicates: true 
+            ignoreDuplicates: false 
           })
         
-        if (!error) imported++
+        if (error) {
+          console.error('Import error for', contact.email, ':', error)
+          errors.push(`${contact.email}: ${error.message}`)
+        } else {
+          imported++
+        }
       }
 
-      setMessage(`✅ Successfully imported ${imported} contacts!`)
+      if (errors.length > 0) {
+        setMessage(`⚠️ Imported ${imported} contacts with ${errors.length} errors. Check console for details.`)
+        console.log('Import errors:', errors)
+      } else {
+        setMessage(`✅ Successfully imported ${imported} contacts!`)
+      }
       loadStats()
     } catch (error) {
       setMessage(`❌ Error: ${error.message}`)
@@ -71,20 +94,20 @@ export default function AdminDashboard() {
   }
 
   const loadStats = async () => {
-    const { count: totalFans } = await supabase
-      .from('profiles')
+    const { count: totalContacts } = await supabase
+      .from('contacts')
       .select('*', { count: 'exact', head: true })
     
-    const { count: verifiedFans } = await supabase
-      .from('profiles')
+    const { count: signedUpMembers } = await supabase
+      .from('contacts')
       .select('*', { count: 'exact', head: true })
-      .eq('email_verified', true)
+      .eq('signed_up', true)
     
     const { count: totalContent } = await supabase
       .from('exclusive_content')
       .select('*', { count: 'exact', head: true })
 
-    setStats({ totalFans, verifiedFans, totalContent })
+    setStats({ totalContacts, signedUpMembers, totalContent })
   }
 
   return (
@@ -93,12 +116,12 @@ export default function AdminDashboard() {
       
       <div className="stats-grid">
         <div className="stat-card">
-          <h3>Total Fans</h3>
-          <p className="stat-number">{stats?.totalFans || 0}</p>
+          <h3>Total Contacts</h3>
+          <p className="stat-number">{stats?.totalContacts || 0}</p>
         </div>
         <div className="stat-card">
-          <h3>Verified Members</h3>
-          <p className="stat-number">{stats?.verifiedFans || 0}</p>
+          <h3>Signed Up Members</h3>
+          <p className="stat-number">{stats?.signedUpMembers || 0}</p>
         </div>
         <div className="stat-card">
           <h3>Exclusive Content</h3>

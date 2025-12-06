@@ -1,11 +1,12 @@
--- Seth Freeman Music - Fan Portal Database Schema
--- Run this in your Supabase SQL Editor
+-- Migration 001: Initial Schema
+-- Created: 2025-12-06
+-- Description: Initial database setup with profiles, content, events, releases, and newsletters
 
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Profiles table (extends Supabase auth.users)
-CREATE TABLE profiles (
+CREATE TABLE IF NOT EXISTS profiles (
   id UUID REFERENCES auth.users ON DELETE CASCADE PRIMARY KEY,
   email TEXT UNIQUE NOT NULL,
   name TEXT,
@@ -18,15 +19,17 @@ CREATE TABLE profiles (
 -- Enable Row Level Security
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
--- Profiles policies
+-- Profiles policies (drop and recreate to avoid conflicts)
+DROP POLICY IF EXISTS "Users can view own profile" ON profiles;
 CREATE POLICY "Users can view own profile" ON profiles
   FOR SELECT USING (auth.uid() = id);
 
+DROP POLICY IF EXISTS "Users can update own profile" ON profiles;
 CREATE POLICY "Users can update own profile" ON profiles
   FOR UPDATE USING (auth.uid() = id);
 
 -- Exclusive Content table
-CREATE TABLE exclusive_content (
+CREATE TABLE IF NOT EXISTS exclusive_content (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   title TEXT NOT NULL,
   description TEXT,
@@ -42,12 +45,12 @@ CREATE TABLE exclusive_content (
 
 ALTER TABLE exclusive_content ENABLE ROW LEVEL SECURITY;
 
--- Only authenticated users can view published content
+DROP POLICY IF EXISTS "Authenticated users can view published content" ON exclusive_content;
 CREATE POLICY "Authenticated users can view published content" ON exclusive_content
   FOR SELECT USING (auth.role() = 'authenticated' AND is_published = TRUE);
 
 -- Events table (for newsletter)
-CREATE TABLE events (
+CREATE TABLE IF NOT EXISTS events (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   title TEXT NOT NULL,
   event_date TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -62,11 +65,12 @@ CREATE TABLE events (
 
 ALTER TABLE events ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Anyone can view published events" ON events;
 CREATE POLICY "Anyone can view published events" ON events
   FOR SELECT USING (is_published = TRUE);
 
 -- Releases table (for newsletter)
-CREATE TABLE releases (
+CREATE TABLE IF NOT EXISTS releases (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   title TEXT NOT NULL,
   release_date DATE NOT NULL,
@@ -82,11 +86,12 @@ CREATE TABLE releases (
 
 ALTER TABLE releases ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Anyone can view published releases" ON releases;
 CREATE POLICY "Anyone can view published releases" ON releases
   FOR SELECT USING (is_published = TRUE);
 
 -- Newsletter history table
-CREATE TABLE newsletters (
+CREATE TABLE IF NOT EXISTS newsletters (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   subject TEXT NOT NULL,
   intro_blurb TEXT,
@@ -102,26 +107,27 @@ CREATE TABLE newsletters (
 ALTER TABLE newsletters ENABLE ROW LEVEL SECURITY;
 
 -- Admin role check function
--- SETUP: After your first login, get your user ID from Supabase Dashboard → Authentication → Users
--- Then replace 'your-user-id-here' below with your actual UUID
 CREATE OR REPLACE FUNCTION is_admin()
 RETURNS BOOLEAN AS $$
 BEGIN
-  -- Check if current user is admin by user ID
-  RETURN auth.uid() = 'your-user-id-here'::uuid; -- Replace with your user ID after first login
+  RETURN auth.uid() = 'your-user-id-here'::uuid;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Admin policies for content management
+DROP POLICY IF EXISTS "Admins can do everything on exclusive_content" ON exclusive_content;
 CREATE POLICY "Admins can do everything on exclusive_content" ON exclusive_content
   FOR ALL USING (is_admin());
 
+DROP POLICY IF EXISTS "Admins can do everything on events" ON events;
 CREATE POLICY "Admins can do everything on events" ON events
   FOR ALL USING (is_admin());
 
+DROP POLICY IF EXISTS "Admins can do everything on releases" ON releases;
 CREATE POLICY "Admins can do everything on releases" ON releases
   FOR ALL USING (is_admin());
 
+DROP POLICY IF EXISTS "Admins can do everything on newsletters" ON newsletters;
 CREATE POLICY "Admins can do everything on newsletters" ON newsletters
   FOR ALL USING (is_admin());
 
@@ -141,16 +147,17 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Trigger to create profile on user signup
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- Indexes for performance
-CREATE INDEX idx_exclusive_content_type ON exclusive_content(type);
-CREATE INDEX idx_exclusive_content_created_at ON exclusive_content(created_at DESC);
-CREATE INDEX idx_events_date ON events(event_date);
-CREATE INDEX idx_releases_date ON releases(release_date DESC);
-CREATE INDEX idx_profiles_email ON profiles(email);
+CREATE INDEX IF NOT EXISTS idx_exclusive_content_type ON exclusive_content(type);
+CREATE INDEX IF NOT EXISTS idx_exclusive_content_created_at ON exclusive_content(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_events_date ON events(event_date);
+CREATE INDEX IF NOT EXISTS idx_releases_date ON releases(release_date DESC);
+CREATE INDEX IF NOT EXISTS idx_profiles_email ON profiles(email);
 
 -- Content view tracking function
 CREATE OR REPLACE FUNCTION increment_view_count(content_id UUID)

@@ -35,3 +35,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Database
+*.sql.backup
+*.sql.bak
+database/.temp/

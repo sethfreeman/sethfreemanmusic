@@ -71,6 +71,20 @@ The site is deployed on Vercel with automatic deployments from the main branch.
 - 🎵 Integration with music streaming platforms
 - 📸 Social media integration
 - 🎬 Embedded video content
+- 🔐 Fan portal with OAuth authentication (GitHub, Google)
+- 👥 Member management and exclusive content
+- 📧 Newsletter system with Supabase backend
+
+## Fan Portal
+
+The site includes a fan portal powered by Supabase for:
+- OAuth authentication (GitHub, Google, Facebook, Apple)
+- Exclusive content for members (videos, audio, photos, downloads)
+- Monthly newsletter system
+- Admin dashboard for content management
+- CSV import for existing fan contacts
+
+See `SETUP-GUIDE.md` for detailed setup instructions.
 
 ## History
 

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 
 export const metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
             <p>&copy; 2025 Seth Freeman Music. All rights reserved.</p>
           </footer>
         </div>
+        <SpeedInsights />
       </body>
     </html>
   )

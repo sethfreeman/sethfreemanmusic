@@ -147,7 +147,7 @@ export default function NewsletterPage() {
           <input
             type="text"
             name="subject"
-            placeholder="Seth Freeman Music - December Update"
+            defaultValue="Seth Freeman Music - December Update"
             required
           />
         </div>
@@ -157,7 +157,7 @@ export default function NewsletterPage() {
           <textarea
             name="intro_blurb"
             rows="4"
-            placeholder="Hey everyone! Here's what's new this month..."
+            defaultValue="Hey everyone! Here's what's new this month..."
             required
           ></textarea>
         </div>

@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import Navbar from './components/Navbar'
 import './globals.css'
 
 export const metadata = {
@@ -12,21 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <div className="App">
-          <nav className="navbar">
-            <div className="navbar-left">
-              <h1>Seth Freeman</h1>
-              <p className="tagline">Singer / Songwriter</p>
-            </div>
-            <ul>
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/music">Music</Link></li>
-              <li><Link href="/photos">Photos</Link></li>
-              <li><Link href="/video">Video</Link></li>
-              <li><Link href="/bio">Bio</Link></li>
-              <li><Link href="/shows">Tour</Link></li>
-              <li><Link href="/members" className="members-link">Members</Link></li>
-            </ul>
-          </nav>
+          <Navbar />
           
           <main>
             {children}

@@ -1,16 +1,24 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import './login.css'
 
 export default function LoginPage() {
   const router = useRouter()
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     // Check if already logged in
     checkUser()
+    
+    // Check for error in URL
+    const params = new URLSearchParams(window.location.search)
+    const errorParam = params.get('error')
+    if (errorParam) {
+      setError(decodeURIComponent(errorParam))
+    }
   }, [])
 
   const checkUser = async () => {
@@ -45,8 +53,14 @@ export default function LoginPage() {
       <div className="login-card">
         <h1>🎵 Join the Fan Club</h1>
         <p className="login-subtitle">
-          Sign in to access exclusive content, early releases, and more
+          <strong>Free membership</strong> - Sign in to access exclusive content, early releases, and more
         </p>
+
+        {error && (
+          <div className="error-message">
+            <strong>Sign in failed:</strong> {error}
+          </div>
+        )}
 
         <div className="login-benefits">
           <div className="benefit">

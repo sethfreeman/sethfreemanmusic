@@ -7,9 +7,15 @@ Now that your domain `sethfreemanmusic.com` is working, update these settings:
 ### 1. Set Custom Domain as Primary
 
 1. Go to Vercel Dashboard → Your Project → **Settings** → **Domains**
-2. Find `sethfreemanmusic.com`
-3. Click the three dots menu → **Set as Primary**
-4. This will redirect `*.vercel.app` URLs to your custom domain
+2. Find `sethfreemanmusic.com` in the list
+3. Look for an option to "Redirect" or "Set as Primary" (might be a button or toggle)
+4. If there's no obvious option, the domain may already be primary
+5. To force redirects from vercel.app to your custom domain:
+   - Click on your `*.vercel.app` domain
+   - Look for "Redirect to" option
+   - Select `sethfreemanmusic.com`
+
+Alternatively, Vercel automatically makes your first custom domain primary. The key is ensuring the vercel.app subdomain redirects to your custom domain.
 
 ### 2. Update Environment Variables
 

@@ -63,36 +63,47 @@ export default function Navbar() {
         <li><Link href="/video">Video</Link></li>
         <li><Link href="/bio">Bio</Link></li>
         <li><Link href="/shows">Tour</Link></li>
-        <li><Link href="/members" className="members-link">Members</Link></li>
         {isAdmin && (
           <li><Link href="/admin" className="admin-link">Admin</Link></li>
         )}
-        {user ? (
-          <li className="user-menu">
-            <button onClick={() => setShowMenu(!showMenu)} className="user-button">
-              👤
-            </button>
-            {showMenu && (
-              <div className="user-dropdown">
-                <div className="user-info">
-                  <strong>{user.email}</strong>
-                  {isAdmin && <span className="admin-badge">Admin</span>}
-                </div>
-                <Link href="/profile" onClick={() => setShowMenu(false)}>
-                  My Profile
-                </Link>
-                <Link href="/members" onClick={() => setShowMenu(false)}>
-                  Exclusive Content
-                </Link>
-                <button onClick={handleSignOut} className="sign-out-button">
-                  Sign Out
-                </button>
-              </div>
-            )}
-          </li>
-        ) : (
-          <li><Link href="/login" className="login-link">Sign In</Link></li>
-        )}
+        <li className="user-menu">
+          <button onClick={() => setShowMenu(!showMenu)} className="members-link members-button">
+            Members
+          </button>
+          {showMenu && (
+            <div className="user-dropdown">
+              {user ? (
+                <>
+                  <div className="user-info">
+                    <strong>{user.email}</strong>
+                    {isAdmin && <span className="admin-badge">Admin</span>}
+                  </div>
+                  <Link href="/profile" onClick={() => setShowMenu(false)}>
+                    My Profile
+                  </Link>
+                  <Link href="/members" onClick={() => setShowMenu(false)}>
+                    Exclusive Content
+                  </Link>
+                  <button onClick={handleSignOut} className="sign-out-button">
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="user-info">
+                    <strong>Join the Fan Club</strong>
+                    <p style={{ fontSize: '12px', margin: '5px 0 0 0', color: 'rgba(255,255,255,0.7)' }}>
+                      Free membership
+                    </p>
+                  </div>
+                  <Link href="/login" onClick={() => setShowMenu(false)}>
+                    Sign In / Sign Up
+                  </Link>
+                </>
+              )}
+            </div>
+          )}
+        </li>
       </ul>
     </nav>
   )

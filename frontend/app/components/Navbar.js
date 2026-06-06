@@ -63,6 +63,7 @@ export default function Navbar() {
         <li><Link href="/video">Video</Link></li>
         <li><Link href="/bio">Bio</Link></li>
         <li><Link href="/shows">Tour</Link></li>
+        <li><Link href="/tips">Tip Jar</Link></li>
         {isAdmin && (
           <li><Link href="/admin" className="admin-link">Admin</Link></li>
         )}

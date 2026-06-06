@@ -1,0 +1,87 @@
+.tips-container {
+  text-align: center;
+  padding: 60px 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.tips-title {
+  font-size: 3rem;
+  color: #fff;
+  margin: 0 0 15px 0;
+}
+
+.tips-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 50px 0;
+}
+
+.tip-links {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tip-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  min-width: 160px;
+}
+
+.tip-button:hover {
+  background: rgba(74, 158, 255, 0.3);
+  border-color: #4a9eff;
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(74, 158, 255, 0.4);
+}
+
+.tip-logo {
+  width: 64px;
+  height: 64px;
+}
+
+.tip-handle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+@media (max-width: 600px) {
+  .tips-title {
+    font-size: 2.5rem;
+  }
+
+  .tip-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tip-button {
+    width: 100%;
+    max-width: 280px;
+    flex-direction: row;
+    padding: 20px 30px;
+    justify-content: flex-start;
+  }
+
+  .tip-logo {
+    width: 48px;
+    height: 48px;
+  }
+}

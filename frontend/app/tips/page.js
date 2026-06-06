@@ -1,11 +1,22 @@
+'use client'
+
+import { useEffect } from 'react'
 import './tips.css'
 
-export const metadata = {
-  title: 'Tip Jar - Seth Freeman Music',
-  description: 'Support Seth Freeman Music',
-}
-
 export default function TipsPage() {
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = '//widget.songkick.com/9050329/widget.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
+  }, [])
+
   return (
     <div className="tips-container">
       <h1 className="tips-title">Tip Jar</h1>
@@ -61,6 +72,22 @@ export default function TipsPage() {
           <span className="tip-handle">$manfreeseth</span>
         </a>
 
+      </div>
+
+      <div className="shows-section">
+        <h2 className="shows-title">Upcoming Shows</h2>
+        <div className="songkick-container">
+          <a
+            href="https://www.songkick.com/artists/9050329"
+            className="songkick-widget"
+            data-theme="dark"
+            data-track-button="on"
+            data-detect-style="true"
+            data-background-color="transparent"
+          >
+            Seth Freeman tour dates
+          </a>
+        </div>
       </div>
     </div>
   )

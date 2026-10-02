@@ -65,8 +65,10 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h1>Seth Freeman</h1>
-        <p className="tagline">Singer / Songwriter</p>
+        <Link href="/" className="navbar-brand" onClick={closeMenu}>
+          <h1>Seth Freeman</h1>
+          <p className="tagline">Singer / Songwriter</p>
+        </Link>
       </div>
 
       <button

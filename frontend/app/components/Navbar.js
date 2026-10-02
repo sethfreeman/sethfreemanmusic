@@ -69,7 +69,7 @@ export default function Navbar() {
         )}
         <li className="user-menu">
           <button onClick={() => setShowMenu(!showMenu)} className="members-link members-button">
-            Members
+            {user ? 'Fan Club Portal' : 'Join Fan Club'}
           </button>
           {showMenu && (
             <div className="user-dropdown">

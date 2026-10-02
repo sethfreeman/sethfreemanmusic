@@ -1,5 +1,6 @@
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Navbar from './components/Navbar'
+import SocialLinks from './components/SocialLinks'
 import './globals.css'
 
 export const metadata = {
@@ -19,6 +20,8 @@ export default function RootLayout({ children }) {
           </main>
           
           <footer>
+            <hr className="footer-divider" />
+            <SocialLinks />
             <p>&copy; 2025 Seth Freeman Music. All rights reserved.</p>
           </footer>
         </div>

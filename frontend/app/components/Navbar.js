@@ -12,6 +12,7 @@ const baseLinks = [
   { href: '/video', label: 'Video' },
   { href: '/bio', label: 'Bio' },
   { href: '/shows', label: 'Tour' },
+  { href: '/epk', label: 'Press Kit' },
   { href: '/tips', label: 'Tip Jar' },
   { href: '/members', label: 'Fan Club' },
 ]

@@ -1,0 +1,62 @@
+.epk-page h1 {
+  font-size: 1.76rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.epk-section {
+  margin-bottom: 2.5rem;
+}
+
+.epk-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #4a9eff;
+}
+
+.epk-section p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #fff;
+  margin-bottom: 1rem;
+  max-width: 760px;
+}
+
+.epk-section a {
+  color: #4a9eff;
+  text-decoration: none;
+}
+
+.epk-section a:hover {
+  text-decoration: underline;
+  color: #6bb3ff;
+}
+
+.epk-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.epk-links a {
+  display: inline-flex;
+  padding: 10px 24px;
+  background: rgba(74, 158, 255, 0.08);
+  border: 2px solid rgba(74, 158, 255, 0.5);
+  border-radius: 25px;
+  color: #4a9eff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.epk-links a:hover {
+  background: rgba(74, 158, 255, 0.25);
+  border-color: #4a9eff;
+  color: #6bb3ff;
+  transform: translateY(-2px);
+  text-decoration: none;
+}

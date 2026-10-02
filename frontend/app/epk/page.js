@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ObfuscatedEmail from '../components/ObfuscatedEmail'
 import './epk.css'
 
 export const metadata = {
@@ -65,7 +66,7 @@ export default function Epk() {
       <section className="epk-section">
         <h2>Contact</h2>
         <p>
-          Booking &amp; press: <a href="mailto:seth@sethfreemanmusic.com">seth@sethfreemanmusic.com</a>
+          Booking &amp; press: <ObfuscatedEmail user="seth" domain="sethfreemanmusic.com" />
         </p>
       </section>
     </div>

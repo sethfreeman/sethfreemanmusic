@@ -56,7 +56,8 @@
   letter-spacing: 1px;
 }
 
-/* Prominent project buttons (Still Spark, Little John, Freeman/O'Leary) */
+/* Project buttons (Still Spark, Little John, Freeman/O'Leary) —
+   same width and rounded corners as the streaming buttons, centered */
 .music-page .projects {
   margin-bottom: 3rem;
 }
@@ -64,45 +65,42 @@
 .music-page .project-buttons {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
 
 .music-page .project-button {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  gap: 0.35rem;
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, rgba(74, 158, 255, 0.18) 0%, rgba(102, 126, 234, 0.18) 100%);
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 28px;
+  background: rgba(74, 158, 255, 0.08);
   border: 2px solid rgba(74, 158, 255, 0.5);
-  border-radius: 14px;
+  border-radius: 25px;
   text-decoration: none;
-  color: #fff;
+  color: #4a9eff;
+  text-align: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .music-page .project-button:hover {
+  background: rgba(74, 158, 255, 0.25);
   border-color: #4a9eff;
-  background: linear-gradient(135deg, rgba(74, 158, 255, 0.3) 0%, rgba(102, 126, 234, 0.3) 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(74, 158, 255, 0.35);
+  color: #6bb3ff;
+  transform: translateY(-2px);
 }
 
 .music-page .project-name {
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .music-page .project-note {
-  font-size: 0.98rem;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
   font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .music-page .project-name {
-    font-size: 1.25rem;
-  }
 }

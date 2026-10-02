@@ -17,17 +17,17 @@ const projects = [
   {
     name: 'Still Spark',
     href: 'https://www.stillspark.com',
-    note: 'Soulful Americana duo with Dan O\u2019Leary.',
+    note: 'Soulful Americana band',
   },
   {
     name: 'Little John',
     href: 'https://www.littlejohnrocks.com',
-    note: 'Melodic alt-rock band (EMI Records).',
+    note: 'Melodic alt-rock band',
   },
   {
     name: 'Freeman / O\u2019Leary',
     href: 'https://freemanoleary.com',
-    note: 'Songwriting team.',
+    note: 'Songwriting team',
   },
 ]
 

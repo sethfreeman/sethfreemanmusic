@@ -5,19 +5,29 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import './Navbar.css'
 
+const baseLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/music', label: 'Music' },
+  { href: '/photos', label: 'Photos' },
+  { href: '/video', label: 'Video' },
+  { href: '/bio', label: 'Bio' },
+  { href: '/shows', label: 'Tour' },
+  { href: '/tips', label: 'Tip Jar' },
+  { href: '/members', label: 'Fan Club' },
+]
+
 export default function Navbar() {
   const [user, setUser] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
-  const [showMenu, setShowMenu] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     checkUser()
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
       if (session?.user) {
-        checkIfAdmin(session.user.id)
+        checkIfAdmin()
       } else {
         setIsAdmin(false)
       }
@@ -30,12 +40,11 @@ export default function Navbar() {
     const { data: { user } } = await supabase.auth.getUser()
     setUser(user)
     if (user) {
-      await checkIfAdmin(user.id)
+      await checkIfAdmin()
     }
   }
 
-  const checkIfAdmin = async (userId) => {
-    // Check if user is admin by calling the database function
+  const checkIfAdmin = async () => {
     const { data, error } = await supabase.rpc('is_admin')
     if (!error && data === true) {
       setIsAdmin(true)
@@ -46,9 +55,11 @@ export default function Navbar() {
     await supabase.auth.signOut()
     setUser(null)
     setIsAdmin(false)
-    setShowMenu(false)
+    setOpen(false)
     window.location.href = '/'
   }
+
+  const closeMenu = () => setOpen(false)
 
   return (
     <nav className="navbar">
@@ -56,55 +67,43 @@ export default function Navbar() {
         <h1>Seth Freeman</h1>
         <p className="tagline">Singer / Songwriter</p>
       </div>
-      <ul>
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/music">Music</Link></li>
-        <li><Link href="/photos">Photos</Link></li>
-        <li><Link href="/video">Video</Link></li>
-        <li><Link href="/bio">Bio</Link></li>
-        <li><Link href="/shows">Tour</Link></li>
-        <li><Link href="/tips">Tip Jar</Link></li>
+
+      <button
+        type="button"
+        className="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded={open}
+        aria-controls="primary-nav"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className={`hamburger ${open ? 'is-open' : ''}`} aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </span>
+      </button>
+
+      <ul id="primary-nav" className={open ? 'is-open' : ''}>
+        {baseLinks.map((l) => (
+          <li key={l.href}>
+            <Link href={l.href} onClick={closeMenu}>{l.label}</Link>
+          </li>
+        ))}
         {isAdmin && (
-          <li><Link href="/admin" className="admin-link">Admin</Link></li>
+          <li><Link href="/admin" onClick={closeMenu}>Admin</Link></li>
         )}
-        <li className="user-menu">
-          <button onClick={() => setShowMenu(!showMenu)} className="members-link members-button">
-            {user ? 'Fan Club Portal' : 'Join Fan Club'}
-          </button>
-          {showMenu && (
-            <div className="user-dropdown">
-              {user ? (
-                <>
-                  <div className="user-info">
-                    <strong>{user.email}</strong>
-                    {isAdmin && <span className="admin-badge">Admin</span>}
-                  </div>
-                  <Link href="/profile" onClick={() => setShowMenu(false)}>
-                    My Profile
-                  </Link>
-                  <Link href="/members" onClick={() => setShowMenu(false)}>
-                    Exclusive Content
-                  </Link>
-                  <button onClick={handleSignOut} className="sign-out-button">
-                    Sign Out
-                  </button>
-                </>
-              ) : (
-                <>
-                  <div className="user-info">
-                    <strong>Join the Fan Club</strong>
-                    <p style={{ fontSize: '12px', margin: '5px 0 0 0', color: 'rgba(255,255,255,0.7)' }}>
-                      Free membership
-                    </p>
-                  </div>
-                  <Link href="/login" onClick={() => setShowMenu(false)}>
-                    Sign In / Sign Up
-                  </Link>
-                </>
-              )}
-            </div>
-          )}
-        </li>
+        {user && (
+          <li><Link href="/profile" onClick={closeMenu}>Profile</Link></li>
+        )}
+        {user ? (
+          <li>
+            <button type="button" className="nav-link-button" onClick={handleSignOut}>
+              Sign Out
+            </button>
+          </li>
+        ) : (
+          <li><Link href="/login" onClick={closeMenu}>Sign In</Link></li>
+        )}
       </ul>
     </nav>
   )

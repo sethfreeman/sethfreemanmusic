@@ -9,6 +9,7 @@ const platforms = [
   { name: 'Apple Music', href: 'https://music.apple.com/us/artist/seth-freeman/1031393197' },
   { name: 'Spotify', href: 'https://open.spotify.com/artist/4VTNwGyq01beyw46MzTa67' },
   { name: 'Amazon Music', href: 'https://music.amazon.com/artists/B0DYCY3W1F/seth-freeman' },
+  { name: 'YouTube Music', href: 'https://music.youtube.com/channel/UCYmI0NKagym82rQGcObMlGQ' },
   { name: 'Bandcamp', href: 'https://sethfreeman.bandcamp.com/' },
   { name: 'ReverbNation', href: 'https://www.reverbnation.com/sethfreeman' },
 ]

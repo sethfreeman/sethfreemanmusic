@@ -14,17 +14,22 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="music-links">
-          <a href="https://music.apple.com/us/artist/seth-freeman/1031393197" target="_blank" rel="noopener noreferrer" className="music-button">Apple Music</a>
-          <a href="https://open.spotify.com/artist/4VTNwGyq01beyw46MzTa67" target="_blank" rel="noopener noreferrer" className="music-button">Spotify</a>
-          <a href="https://music.amazon.com/artists/B0DYCY3W1F/seth-freeman" target="_blank" rel="noopener noreferrer" className="music-button">Amazon Music</a>
-        </div>
+        <section className="platforms" aria-label="Streaming platforms">
+          <a href="https://music.apple.com/us/artist/seth-freeman/1031393197" target="_blank" rel="noopener noreferrer" className="platform-button">Apple Music</a>
+          <a href="https://open.spotify.com/artist/4VTNwGyq01beyw46MzTa67" target="_blank" rel="noopener noreferrer" className="platform-button">Spotify</a>
+          <a href="https://music.amazon.com/artists/B0DYCY3W1F/seth-freeman" target="_blank" rel="noopener noreferrer" className="platform-button">Amazon Music</a>
+          <a href="https://music.youtube.com/channel/UCYmI0NKagym82rQGcObMlGQ" target="_blank" rel="noopener noreferrer" className="platform-button">YouTube Music</a>
+          <a href="https://sethfreeman.bandcamp.com/" target="_blank" rel="noopener noreferrer" className="platform-button">Bandcamp</a>
+          <a href="https://www.reverbnation.com/sethfreeman" target="_blank" rel="noopener noreferrer" className="platform-button">ReverbNation</a>
+        </section>
 
-        <div className="project-links">
-          <a href="https://freemanoleary.com" target="_blank" rel="noopener noreferrer" className="project-button">Freeman O'Leary</a>
-          <a href="https://stillspark.com" target="_blank" rel="noopener noreferrer" className="project-button">Still Spark</a>
-          <a href="https://littlejohnrocks.com" target="_blank" rel="noopener noreferrer" className="project-button">Little John</a>
-        </div>
+        <section className="projects">
+          <div className="project-buttons">
+            <a href="https://freemanoleary.com" target="_blank" rel="noopener noreferrer" className="project-button">Freeman O'Leary</a>
+            <a href="https://stillspark.com" target="_blank" rel="noopener noreferrer" className="project-button">Still Spark</a>
+            <a href="https://littlejohnrocks.com" target="_blank" rel="noopener noreferrer" className="project-button">Little John</a>
+          </div>
+        </section>
 
       </div>
     </div>

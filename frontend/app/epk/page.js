@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import ObfuscatedEmail from '../components/ObfuscatedEmail'
 import './epk.css'
 
@@ -36,13 +37,25 @@ export default function Epk() {
 
       <section className="epk-section">
         <h2>Photos</h2>
-        <p>
-          Browse current photos on{' '}
-          <a href="https://www.instagram.com/sethfreemanmusic/" target="_blank" rel="noopener noreferrer">
-            Instagram
-          </a>
-          . High-resolution press photos are available on request.
-        </p>
+        <div className="epk-photos">
+          <Image
+            className="epk-photo"
+            src="/images/seth-freeman-promo-01.jpg"
+            alt="Seth Freeman promotional photo"
+            width={1500}
+            height={1904}
+            sizes="(max-width: 768px) 100vw, 380px"
+          />
+          <Image
+            className="epk-photo"
+            src="/images/seth-freeman-promo-02.jpg"
+            alt="Seth Freeman promotional photo"
+            width={4032}
+            height={3024}
+            sizes="(max-width: 768px) 100vw, 380px"
+          />
+        </div>
+        <p>High-resolution press photos are available on request.</p>
       </section>
 
       <section className="epk-section">

@@ -51,53 +51,48 @@
   color: #6bb3ff;
 }
 
-.music-links,
-.project-links {
+/* Streaming platform + project buttons — matches the Music page layout:
+   vertical stack, centered, blue-accent pills */
+.home-content .platforms,
+.home-content .project-buttons {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  margin: 1.5rem 0;
-  justify-content: center;
 }
 
-.music-links {
-  padding: 1.5rem 0 0.5rem;
-  background-color: transparent;
-  border-radius: 8px;
+.home-content .platforms {
+  margin: 1.5rem 0 2rem;
 }
 
-.project-links {
-  padding: 0.5rem 0 1.5rem;
+.home-content .projects {
+  margin-bottom: 1rem;
 }
 
-.music-button,
-.project-button {
+.home-content .platform-button,
+.home-content .project-button {
   display: inline-flex;
-  padding: 14px 32px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 14px 28px;
+  background: rgba(74, 158, 255, 0.08);
+  border: 2px solid rgba(74, 158, 255, 0.5);
+  color: #4a9eff;
   text-decoration: none;
   border-radius: 25px;
   font-size: 17px;
   font-weight: 600;
   transition: all 0.3s ease;
-  flex: 0 1 calc(33.333% - 1rem);
-  min-width: 200px;
-  max-width: 280px;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.music-button:hover,
-.project-button:hover {
-  background: rgba(74, 158, 255, 0.3);
+.home-content .platform-button:hover,
+.home-content .project-button:hover {
+  background: rgba(74, 158, 255, 0.25);
   border-color: #4a9eff;
-  color: #fff;
+  color: #6bb3ff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(74, 158, 255, 0.4);
 }
 
 .social-links {
@@ -131,13 +126,6 @@
   color: #4a9eff;
 }
 
-@media (max-width: 1024px) {
-  .music-button,
-  .project-button {
-    flex: 0 1 calc(50% - 1rem);
-  }
-}
-
 @media (max-width: 768px) {
   .home-wrapper {
     margin: -2rem -1rem 0;
@@ -155,19 +143,10 @@
     font-size: 1rem;
   }
   
-  .music-links,
-  .project-links {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .music-button,
-  .project-button {
+  .home-content .platform-button,
+  .home-content .project-button {
     font-size: 16px;
     padding: 12px 28px;
-    width: 100%;
-    max-width: 280px;
-    flex: none;
   }
   
   .social-links {

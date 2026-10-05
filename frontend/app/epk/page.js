@@ -8,6 +8,11 @@ export const metadata = {
   description: 'Electronic press kit for Seth Freeman — bio, photos, and music links.',
 }
 
+const pressPhotos = [
+  { src: '/images/seth-freeman-promo-01.jpg', alt: 'Seth Freeman press photo', w: 1500, h: 1904 },
+  { src: '/images/seth-freeman-promo-02.jpg', alt: 'Seth Freeman press photo', w: 4032, h: 3024 },
+]
+
 export default function Epk() {
   return (
     <div className="epk-page">
@@ -38,24 +43,13 @@ export default function Epk() {
       <section className="epk-section">
         <h2>Photos</h2>
         <div className="epk-photos">
-          <Image
-            className="epk-photo"
-            src="/images/seth-freeman-promo-01.jpg"
-            alt="Seth Freeman promotional photo"
-            width={1500}
-            height={1904}
-            sizes="(max-width: 768px) 100vw, 380px"
-          />
-          <Image
-            className="epk-photo"
-            src="/images/seth-freeman-promo-02.jpg"
-            alt="Seth Freeman promotional photo"
-            width={4032}
-            height={3024}
-            sizes="(max-width: 768px) 100vw, 380px"
-          />
+          {pressPhotos.map((p) => (
+            <a key={p.src} href={p.src} target="_blank" rel="noopener noreferrer">
+              <Image src={p.src} alt={p.alt} width={p.w} height={p.h} />
+            </a>
+          ))}
         </div>
-        <p>High-resolution press photos are available on request.</p>
+        <p className="epk-note">Click an image to open the full-resolution file.</p>
       </section>
 
       <section className="epk-section">

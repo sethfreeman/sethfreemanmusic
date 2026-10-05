@@ -9,20 +9,37 @@
   color: #fff;
 }
 
-.photo-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.25rem;
   margin: 2rem 0;
-  justify-content: center;
 }
 
-.gallery-photo {
-  width: 100%;
-  max-width: 380px;
-  height: auto;
+.photo-item {
+  overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background: #0a0a0a;
+}
+
+/* Show the whole photo, uncropped. Images size to their own aspect ratio. */
+.photo-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .more-link {

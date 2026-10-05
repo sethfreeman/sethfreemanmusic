@@ -6,24 +6,26 @@ export default function Photos() {
     <div className="photos">
       <h1>Photos</h1>
 
-      <div className="photo-gallery">
-        <Image
-          className="gallery-photo"
-          src="/images/seth-freeman-promo-01.jpg"
-          alt="Seth Freeman promotional photo"
-          width={1500}
-          height={1904}
-          sizes="(max-width: 768px) 100vw, 760px"
-          priority
-        />
-        <Image
-          className="gallery-photo"
-          src="/images/seth-freeman-promo-02.jpg"
-          alt="Seth Freeman promotional photo"
-          width={4032}
-          height={3024}
-          sizes="(max-width: 768px) 100vw, 760px"
-        />
+      <div className="photo-grid">
+        <div className="photo-item">
+          <Image
+            src="/images/seth-freeman-promo-01.jpg"
+            alt="Seth Freeman promotional photo"
+            width={1500}
+            height={1904}
+            sizes="(max-width: 768px) 100vw, 380px"
+            priority
+          />
+        </div>
+        <div className="photo-item">
+          <Image
+            src="/images/seth-freeman-promo-02.jpg"
+            alt="Seth Freeman promotional photo"
+            width={4032}
+            height={3024}
+            sizes="(max-width: 768px) 100vw, 380px"
+          />
+        </div>
       </div>
 
       <p className="more-link">

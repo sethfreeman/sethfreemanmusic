@@ -21,6 +21,7 @@ export default function TipsPage() {
     <div className="tips-container">
       <h1 className="tips-title">Tip Jar</h1>
       <p className="tips-subtitle">Thank you for the support!</p>
+      <p className="tips-merch">Hats and T-Shirts are $20</p>
 
       <div className="tip-links">
 
